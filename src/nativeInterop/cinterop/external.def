@@ -1,0 +1,35 @@
+package=modular.kotlin.interop
+
+compilerOpts.mingw= -D_WIN
+---
+#include <stdlib.h>
+
+#ifdef _WIN
+intptr_t loadLibrary(const char *path){
+    return LoadLibraryExA(path, NULL,0);
+}
+
+intptr_t loadFunction(intptr_t library, const char *name){
+    return GetProcAddress(library, name);
+}
+
+int unloadLibrary(intptr_t library){
+    return FreeLibrary(library);
+}
+#else
+ TODO: Implement POSIX library handling
+#endif
+
+typedef struct {
+    int code;
+
+    int size;
+    void *content
+} MessageData;
+
+typedef MessageData* (*ChannelEventHandler)(void *kotlinRef, MessageData *message);
+
+typedef struct {
+    MessageData* (*handler)(void *kotlinRef, MessageData *message);
+    void *kotlinRef;
+} ChannelData;

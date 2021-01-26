@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="493d2530-1d5a-4eae-83cc-7eb1897cdb13" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/external.def" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeInterop/cinterop/external.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/InteropUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/InteropUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/Module.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/Module.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/ModuleHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/ModuleHost.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/ModuleLoadException.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/ModuleLoadException.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/channels/BooleanMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/BooleanMessage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/channels/Channel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/Channel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/channels/CompositeMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/CompositeMessage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/channels/Message.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/Message.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeTest/kotlin/Messages.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeTest/kotlin/Messages.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="modular-kotlin" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="modular-kotlin" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="modular-kotlin" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="interop" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KotlinMultiplatform" konanHome="G:\Kotlin\kotlin-native-windows-1.4.20">
+    <allAvailableExecutables>
+      <executable target="mingw_x64" targetName="native" execName="test" projectPrefix="modular-kotlin:" isTest="true">
+        <variants>
+          <variant name="Debug" gradleTask=":linkDebugTestNative" file="build\bin\native\debugTest\test.exe">
+            <params workingDirectory="" programParameters="">
+              <environmentVariables />
+            </params>
+          </variant>
+        </variants>
+      </executable>
+    </allAvailableExecutables>
+  </component>
+  <component name="ProjectId" id="1ncIZnGiyguMUDCMzcl8tUvJ98W" />
+  <component name="ProjectViewState">
+    <option name="compactDirectories" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showModules" value="false" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="RunManager">
+    <configuration name="modular-kotlin [cinteropExternalNative]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="cinteropExternalNative" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.modular-kotlin [cinteropExternalNative]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="493d2530-1d5a-4eae-83cc-7eb1897cdb13" name="Default Changelist" comment="" />
+      <created>1611683010117</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611683010117</updated>
+      <workItem from="1611683011636" duration="873000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
