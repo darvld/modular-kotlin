@@ -8,7 +8,9 @@ import modular.kotlin.interop.ChannelEventHandler
 import modular.kotlin.interop.MessageData
 import kotlin.native.concurrent.SharedImmutable
 
+/**Shorthand for a function used to process messages and optionally respond to them when subscribing to a channel.*/
 public typealias MessageListener = (MessageData) -> MessageData?
+/**A pointer to a [ChannelData] struct.*/
 public typealias ChannelHandle = CPointer<ChannelData>
 
 @SharedImmutable
@@ -21,20 +23,33 @@ private val ChannelCallbackHandler: ChannelEventHandler =
         channel.listener?.invoke(messageData.pointed)?.ptr
     }
 
+/**Abstract representation of a communication channel, used to connect with runtime loaded modules.
+ *
+ *  Actual implementation is handled by [InputChannel] and [OutputChannel].*/
 public sealed class Channel(public val handle: ChannelHandle) {
+    /**Provides a [MessageData] struct containing the necessary information to [install] an [InputChannel]. The
+     *  purpose of this function is to provide a portable way to send a handshake using a loaded method invocation,
+     *  so the target module can then install the channel and subscribe to it.*/
     public fun handshake(): MessageData = Message.encodePointer(handle, 1)
 
     public companion object {
         public const val MESSAGE_PING: Int = 1
 
+        /**Opens a new [Channel] by allocating a [ChannelData] struct. The struct is *not* initialized, since this
+         *  should be handled by the receiving end upon channel installation. Use the returned channel's [handshake]
+         *  method to obtain a message you can use to establish a connection.*/
         public fun open(): OutputChannel {
             return OutputChannel(nativeHeap.alloc<ChannelData>().ptr)
         }
 
+        /**Installs an [InputChannel] using the given [ChannelHandle]. You can then subscribe to the
+         * channel to start listening through it.*/
         public fun install(handle: ChannelHandle): InputChannel {
             return InputChannel(handle)
         }
 
+        /**Installs an [InputChannel] using the given [MessageData]. You can then subscribe to the
+         * channel to start listening through it.*/
         public fun install(handshakeMessage: MessageData): InputChannel = InputChannel(
             Message.decodePointer(handshakeMessage)
                 ?: throw Exception("To install a channel using a handshake MessageData, the content pointer must point to a valid ChannelData struct.")
@@ -43,6 +58,8 @@ public sealed class Channel(public val handle: ChannelHandle) {
     }
 }
 
+/**The receiving end of a [Channel], used to respond to events sent through it. Create instances of this class by
+ * calling [Channel.install].*/
 public class InputChannel internal constructor(handle: ChannelHandle) : Channel(handle) {
     private val stableRef = StableRef.create(this)
 
@@ -53,31 +70,59 @@ public class InputChannel internal constructor(handle: ChannelHandle) : Channel(
 
     internal var listener: MessageListener? = null
 
+    /**Remove the listener added through [listen] or [subscribe]. A new listener can still be registered. To definitely
+     * close the receiving end of the channel, use the [disconnect] method.*/
     public fun unsubscribe() {
         listener = null
     }
 
-    public fun listen(response: (MessageData) -> MessageData?): MessageListener = response.also {
-        listener = it
+    /**Listen for messages sent over this channel. The [MessageData] returned from the [response] is sent back to the
+     * owner of this channel.
+     *
+     * If you don't intend to respond to any messages, use [subscribe] instead.
+     *
+     * Bear in mind that only one [MessageListener] may be active at the same time, so repeated calls to
+     * this method or [listen] will override the previous listener.*/
+    public fun listen(response: (MessageData) -> MessageData?)  {
+        listener = response
     }
 
-    public inline fun subscribe(crossinline callback: (MessageData) -> Unit): MessageListener = listen {
+    /**Subscribe to messages sent over this channel. Use this method instead of [listen] if you don't intend to issue
+     * a response.
+     *
+     * Bear in mind that only one [MessageListener] may be active at the same time, so repeated calls to
+     * this method or [listen] will override the previous listener.*/
+    public inline fun subscribe(crossinline callback: (MessageData) -> Unit): Unit = listen {
         callback(it)
         null
     }
 
+    /**Subscribe to messages sent over this channel. Messages are decoded by the [interpreter] before being passed on
+     * to the [callback]. Use this method instead of [listen] if you don't intend to issue
+     * a response.
+     *
+     * Bear in mind that only one [MessageListener] may be active at the same time, so repeated calls to
+     * this method or [listen] will override the previous listener.*/
     public inline fun <T : Message<*>> subscribe(
         interpreter: MessageInterpreter<T>,
         crossinline callback: (T) -> Unit
-    ): MessageListener = listen {
+    ): Unit = listen {
         callback(interpreter.decode(it))
         null
     }
 
+    /**Listen for messages sent over this channel. Messages are decoded by the [interpreter] before being passed on
+     * to the [response] callback. The [MessageData] returned from [response] is sent back to the owner of
+     * this channel.
+     *
+     * If you don't intend to respond to any messages, use [subscribe] instead.
+     *
+     * Bear in mind that only one [MessageListener] may be active at the same time, so repeated calls to
+     * this method or [listen] will override the previous listener.*/
     public inline fun <T : Message<*>> listen(
         interpreter: MessageInterpreter<T>,
         crossinline response: (T) -> MessageData?
-    ): MessageListener = listen {
+    ): Unit = listen {
         response(interpreter.decode(it))
     }
 
@@ -99,7 +144,9 @@ public class InputChannel internal constructor(handle: ChannelHandle) : Channel(
     }
 }
 
-
+/**The emitting end of a [Channel], used to send [MessageData] structs to a listener. Create instances of this class
+ * by calling [Channel.open]. Send the [handshake] message to a dynamically loaded module to establish a communication
+ * channel.*/
 public class OutputChannel internal constructor(handle: ChannelHandle) : Channel(handle) {
 
     /**Whether this channel is still open.
@@ -120,7 +167,8 @@ public class OutputChannel internal constructor(handle: ChannelHandle) : Channel
 
     public inline fun sendPing(): MessageData? = send(MessageData(MESSAGE_PING))
 
-    /**Send a [message] through the channel, note that the message might not be processed (see [open]).
+    /**Send a [message] through the channel, note that the message might not be processed if the channel has not
+     * been installed yet (see [open]).
      *
      * If a response is issued, it is returned.*/
     public fun send(message: MessageData): MessageData? {
