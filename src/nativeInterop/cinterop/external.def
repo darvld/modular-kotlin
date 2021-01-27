@@ -20,6 +20,11 @@ int unloadLibrary(intptr_t library){
  TODO: Implement POSIX library handling
 #endif
 
+/**A very simple struct, used to exchange data between modules.
+*
+* Messages are used by Channels as a basic data cell.
+* Usually, the [code] field carries contextual information (kind of like HTTP codes), while the content pointer
+* holds the real data.*/
 typedef struct {
     int code;
 
@@ -27,9 +32,13 @@ typedef struct {
     void *content
 } MessageData;
 
-typedef MessageData* (*ChannelEventHandler)(void *kotlinRef, MessageData *message);
+/**The prototype for a message handler function*/
+typedef MessageData* (*ChannelEventHandler)(void *data, MessageData *message);
 
+/**Strutcure holding the data for a Channel.
+*
+* The receiving end of the Channel sets the handler and the data pointer to match its implementation.*/
 typedef struct {
-    MessageData* (*handler)(void *kotlinRef, MessageData *message);
-    void *kotlinRef;
+    MessageData* (*handler)(void *data, MessageData *message);
+    void *data;
 } ChannelData;
