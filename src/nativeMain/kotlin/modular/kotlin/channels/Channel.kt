@@ -65,7 +65,7 @@ public class InputChannel internal constructor(handle: ChannelHandle) : Channel(
 
     init {
         handle.pointed.handler = ChannelCallbackHandler
-        handle.pointed.kotlinRef = stableRef.asCPointer()
+        handle.pointed.data = stableRef.asCPointer()
     }
 
     internal var listener: MessageListener? = null
@@ -129,7 +129,7 @@ public class InputChannel internal constructor(handle: ChannelHandle) : Channel(
     /**Stops listening on this channel. If no Shutdown message is received, [disconnect] must be called manually to dispose
      * this channel's StableRef, otherwise memory leaks will happen.*/
     public fun disconnect() {
-        handle.pointed.kotlinRef?.asStableRef<InputChannel>()?.let {
+        handle.pointed.data?.asStableRef<InputChannel>()?.let {
             if (it.get() === this)
                 it.dispose()
             else
@@ -137,7 +137,7 @@ public class InputChannel internal constructor(handle: ChannelHandle) : Channel(
         } ?: return Unit.also { stableRef.dispose() }
 
         // We only get passed this point if we owned the listening channel
-        handle.pointed.kotlinRef = null
+        handle.pointed.data = null
         handle.pointed.handler = null
 
         listener = null
@@ -162,7 +162,7 @@ public class OutputChannel internal constructor(handle: ChannelHandle) : Channel
      * messages even if the handler has been registered.*/
     public val connected: Boolean
         get() {
-            return handle.pointed.handler != null && handle.pointed.kotlinRef != null
+            return handle.pointed.handler != null && handle.pointed.data != null
         }
 
     public inline fun sendPing(): MessageData? = send(MessageData(MESSAGE_PING))
@@ -174,7 +174,7 @@ public class OutputChannel internal constructor(handle: ChannelHandle) : Channel
     public fun send(message: MessageData): MessageData? {
         if (!open) return null
 
-        return handle.pointed.handler?.invoke(handle.pointed.kotlinRef, message.ptr)?.pointed
+        return handle.pointed.handler?.invoke(handle.pointed.data, message.ptr)?.pointed
     }
 
     /**Automatically [encode][Message.encode] the [message] and [send] it through the channel.
@@ -189,7 +189,7 @@ public class OutputChannel internal constructor(handle: ChannelHandle) : Channel
      * After shutdown, any attempt to send a message does nothing.*/
     public fun shutdown() {
         // The official shutdown message, this will give the listener a chance to unsubscribe and cleanup
-        handle.pointed.handler?.invoke(handle.pointed.kotlinRef, null)
+        handle.pointed.handler?.invoke(handle.pointed.data, null)
         nativeHeap.free(handle)
 
         open = false

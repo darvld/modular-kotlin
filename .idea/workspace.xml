@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="493d2530-1d5a-4eae-83cc-7eb1897cdb13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/MessageInterpreter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/InteropUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/InteropUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/Module.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/Module.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/ModuleHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/ModuleHost.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/BooleanMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/BooleanMessage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nativeInterop/cinterop/external.def" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeInterop/cinterop/external.def" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/Channel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/Channel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/CompositeMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/CompositeMessage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/Message.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/nativeMain/kotlin/modular/kotlin/channels/Message.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +57,11 @@
     </system>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KotlinMultiplatform" konanHome="G:\Kotlin\kotlin-native-windows-1.4.20">
@@ -98,7 +97,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
-  <component name="RunManager" selected="Gradle.modular-kotlin [publishToMavenLocal]">
+  <component name="RunManager" selected="Gradle.modular-kotlin [cinteropExternalNative]">
     <configuration name="modular-kotlin [cinteropExternalNative]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -143,8 +142,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.modular-kotlin [publishToMavenLocal]" />
         <item itemvalue="Gradle.modular-kotlin [cinteropExternalNative]" />
+        <item itemvalue="Gradle.modular-kotlin [publishToMavenLocal]" />
       </list>
     </recent_temporary>
   </component>
@@ -159,6 +158,7 @@
       <workItem from="1611683011636" duration="873000" />
       <workItem from="1611683902491" duration="331000" />
       <workItem from="1611688193328" duration="7111000" />
+      <workItem from="1611712271170" duration="661000" />
     </task>
     <servers />
   </component>
